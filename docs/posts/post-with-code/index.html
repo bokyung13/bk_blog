@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -73,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -148,7 +182,22 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#조-김규진-김민채-김보경" id="toc-조-김규진-김민채-김보경" class="nav-link active" data-scroll-target="#조-김규진-김민채-김보경">2조 김규진 김민채 김보경</a>
+  <ul class="collapse">
+  <li><a href="#펭귄-데이터-불러오기" id="toc-펭귄-데이터-불러오기" class="nav-link" data-scroll-target="#펭귄-데이터-불러오기">1. 펭귄 데이터 불러오기</a></li>
+  <li><a href="#데이터-결측치-확인" id="toc-데이터-결측치-확인" class="nav-link" data-scroll-target="#데이터-결측치-확인">2. 데이터 결측치 확인</a></li>
+  <li><a href="#펭귄의-종류-확인" id="toc-펭귄의-종류-확인" class="nav-link" data-scroll-target="#펭귄의-종류-확인">3. 펭귄의 종류 확인</a></li>
+  <li><a href="#빈도수-데이터-확인" id="toc-빈도수-데이터-확인" class="nav-link" data-scroll-target="#빈도수-데이터-확인">4. 빈도수 데이터 확인</a></li>
+  <li><a href="#각-종별-평균-수치-구하기" id="toc-각-종별-평균-수치-구하기" class="nav-link" data-scroll-target="#각-종별-평균-수치-구하기">5. 각 종별 평균 수치 구하기</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
@@ -157,8 +206,272 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>This is a post with executable code.</p>
+<section id="조-김규진-김민채-김보경" class="level1">
+<h1>2조 김규진 김민채 김보경</h1>
+<hr>
+<p>title: “Palmer Penguins” format: html: toc: true toc-depth: 3 jupyter: python3</p>
+<hr>
+<p><br></p>
+<p><strong>2조: 김규진, 김민채, 김보경</strong></p>
+<p><br> <br></p>
+<center>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-s9aOENQqhR1UkpRSo_eFCnsE6tfTVT8lYQ&amp;s.png" class="img-fluid">
+</center>
+<p><br> <br></p>
+<section id="펭귄-데이터-불러오기" class="level3">
+<h3 class="anchored" data-anchor-id="펭귄-데이터-불러오기">1. 펭귄 데이터 불러오기</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>No.</th>
+<th>Col</th>
+<th>Dtype</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><strong>종</strong> species</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><strong>서식지</strong> island</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><strong>부리 길이</strong> bill_length_mm</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><strong>부리 깊이</strong> bill_depth_mm</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><strong>날개 길이</strong> flipper_length_mm</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><strong>몸무게</strong> body_mass_g</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><strong>성별</strong> sex</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><strong>관측년도</strong> year</td>
+<td>int64</td>
+</tr>
+</tbody>
+</table>
+<p><code>info()</code>를 통해 확인 결과, 총 8개의 열로 이뤄진 344개의 데이터가 존재하네요!</p>
+<p>데이터 타입은 문자열과 숫자형으로 나눠지는군요.</p>
+<p>저희는 문자열은 빈도수로 데이터 패턴을 파악하고, 숫자형은 산술통계를 활용해볼게요!</p>
+<p><img src="https://allisonhorst.github.io/palmerpenguins/reference/figures/culmen_depth.png" class="img-fluid"></p>
+<div id="a83a078f" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> load_penguins()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br> <br></p>
+</section>
+<section id="데이터-결측치-확인" class="level3">
+<h3 class="anchored" data-anchor-id="데이터-결측치-확인">2. 데이터 결측치 확인</h3>
+<p><strong>총 344개</strong>의 데이터 중 전체 결측치는 11개</p>
+<p>주로 성별데이터에서 결측치가 존재한다.</p>
+<div id="c82b9e66" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>err <span class="op">=</span> penguins.loc[(penguins[<span class="st">'sex'</span>].isna()), :]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(err)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    species     island  bill_length_mm  bill_depth_mm  flipper_length_mm  \
+3    Adelie  Torgersen             NaN            NaN                NaN   
+8    Adelie  Torgersen            34.1           18.1              193.0   
+9    Adelie  Torgersen            42.0           20.2              190.0   
+10   Adelie  Torgersen            37.8           17.1              186.0   
+11   Adelie  Torgersen            37.8           17.3              180.0   
+47   Adelie      Dream            37.5           18.9              179.0   
+178  Gentoo     Biscoe            44.5           14.3              216.0   
+218  Gentoo     Biscoe            46.2           14.4              214.0   
+256  Gentoo     Biscoe            47.3           13.8              216.0   
+268  Gentoo     Biscoe            44.5           15.7              217.0   
+271  Gentoo     Biscoe             NaN            NaN                NaN   
+
+     body_mass_g  sex  year  
+3            NaN  NaN  2007  
+8         3475.0  NaN  2007  
+9         4250.0  NaN  2007  
+10        3300.0  NaN  2007  
+11        3700.0  NaN  2007  
+47        2975.0  NaN  2007  
+178       4100.0  NaN  2007  
+218       4650.0  NaN  2008  
+256       4725.0  NaN  2009  
+268       4875.0  NaN  2009  
+271          NaN  NaN  2009  </code></pre>
+</div>
+</div>
+<p><br> <br></p>
+</section>
+<section id="펭귄의-종류-확인" class="level3">
+<h3 class="anchored" data-anchor-id="펭귄의-종류-확인">3. 펭귄의 종류 확인</h3>
+<p><img src="https://forum.posit.co/uploads/default/original/3X/0/b/0ba5d8b2b0621630afc7a53dcff5975ec693d05b.png" class="img-fluid"></p>
+<p>오늘 데이터는 “펭귄의 종류”에 따라 알아볼 거예요.</p>
+<p>Palmer Penguin 데이터에는 Adelie, Gentoo, Chinstrap, 총 3개의 종류가 확인되네요.</p>
+<p>이는 오늘 데이터를 보는 데 있어 대분류 구분자로 활용될 것입니다.</p>
+<p><br></p>
+<div id="38d9dfcb" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>penguins.loc[:, <span class="st">'species'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>array(['Adelie', 'Gentoo', 'Chinstrap'], dtype=object)</code></pre>
+</div>
+</div>
+<p><br> <br></p>
+</section>
+<section id="빈도수-데이터-확인" class="level3">
+<h3 class="anchored" data-anchor-id="빈도수-데이터-확인">4. 빈도수 데이터 확인</h3>
+<ol type="1">
+<li>서식지</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Adelie</strong></th>
+<th><strong>Gentoo</strong></th>
+<th><strong>Chinstrap</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dream</td>
+<td>O</td>
+<td>O</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>Torgersen</td>
+<td>O</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>Biscoe</td>
+<td>O</td>
+<td>-</td>
+<td>O</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ol start="2" type="1">
+<li>표본</li>
+</ol>
+<ul>
+<li><strong>Chinstrap</strong> 펭귄이 다른 펭귄들에 비해 표본 데이터 개수가 적다.</li>
+<li>대체적으로 성별 데이터는 남여 비율이 일정하지만, 일부 결측치가 존재한다.</li>
+</ul>
+<div id="1281eecd" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>not_num <span class="op">=</span> penguins.select_dtypes(include<span class="op">=</span>[<span class="st">'object'</span>]).columns</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>group_by_species <span class="op">=</span> penguins.groupby(<span class="st">'species'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>cnt <span class="op">=</span> {col: group_by_species[col].value_counts() <span class="cf">for</span> col <span class="kw">in</span> not_num}</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cnt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'species': species
+Adelie       152
+Chinstrap     68
+Gentoo       124
+Name: count, dtype: int64, 'island': species    island   
+Adelie     Dream         56
+           Torgersen     52
+           Biscoe        44
+Chinstrap  Dream         68
+Gentoo     Biscoe       124
+Name: count, dtype: int64, 'sex': species    sex   
+Adelie     female    73
+           male      73
+Chinstrap  female    34
+           male      34
+Gentoo     male      61
+           female    58
+Name: count, dtype: int64}</code></pre>
+</div>
+</div>
+<p><br> <br></p>
+</section>
+<section id="각-종별-평균-수치-구하기" class="level3">
+<h3 class="anchored" data-anchor-id="각-종별-평균-수치-구하기">5. 각 종별 평균 수치 구하기</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>몸무게</th>
+<th>날개 길이</th>
+<th>부리 길이</th>
+<th>부리 깊이</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1등</strong></td>
+<td>Gentoo</td>
+<td>Gentoo</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td><strong>2등</strong></td>
+<td>-</td>
+<td>Chinstrap</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td><strong>3등</strong></td>
+<td>-</td>
+<td>Adelie</td>
+<td>Adelie</td>
+<td>Gentoo</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>수컷 펭귄이 암컷 펭귄보다 부리 길이, 부리 깊이, 날개 길이, 몸무게가 큰 경향이 있다.</li>
+</ul>
+<p><br></p>
+<div id="09565a2b" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>species_means <span class="op">=</span> penguins.groupby([<span class="st">'species'</span>, <span class="st">'sex'</span>]).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  bill_length_mm  bill_depth_mm  flipper_length_mm  \
+species   sex                                                        
+Adelie    female       37.257534      17.621918         187.794521   
+          male         40.390411      19.072603         192.410959   
+Chinstrap female       46.573529      17.588235         191.735294   
+          male         51.094118      19.252941         199.911765   
+Gentoo    female       45.563793      14.237931         212.706897   
+          male         49.473770      15.718033         221.540984   
+
+                  body_mass_g         year  
+species   sex                               
+Adelie    female  3368.835616  2008.054795  
+          male    4043.493151  2008.054795  
+Chinstrap female  3527.205882  2007.970588  
+          male    3938.970588  2007.970588  
+Gentoo    female  4679.741379  2008.068966  
+          male    5484.836066  2008.065574  </code></pre>
+</div>
+</div>
+<p><br> <br></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
